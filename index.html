@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Doomscroller Stopper helps students interrupt distracting app urges with focus timers, stats, and reflection challenges.">
+  <meta name="theme-color" content="#ff4d6d">
+  <title>Doomscroller Stopper</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="logo.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand nav-button" data-view="home" aria-label="Go home">
+        <img class="brand-logo" src="logo.svg" alt="" width="42" height="42">
+        <span>Doomscroller Stopper</span>
+      </button>
+      <nav class="nav">
+        <button class="nav-button active" data-view="home">Home</button>
+        <button class="nav-button" data-view="stats">Stats</button>
+        <button class="nav-button" data-view="settings">Settings</button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="view active" id="home-view">
+        <div class="hero">
+          <div class="hero-copy">
+            <img class="hero-logo" src="logo.svg" alt="Doomscroller Stopper logo" width="84" height="84">
+            <p class="eyebrow">Digital wellness prototype</p>
+            <h1>Doomscroller Stopper</h1>
+            <p class="tagline">Break the scroll before it breaks your focus.</p>
+            <p class="intro">
+              Start a focus session, then try opening one of the simulated distracting apps.
+              Doomscroller Stopper interrupts the autopilot moment with sound, shake,
+              a countdown, and a short reflection challenge.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-button" id="start-session-btn">Start Focus Session</button>
+              <button class="secondary-button" data-view="stats">View Stats</button>
+              <button class="secondary-button" data-view="settings">Settings</button>
+            </div>
+          </div>
+          <div class="status-panel" aria-live="polite">
+            <span class="status-label">Session status</span>
+            <strong id="session-status">Not started</strong>
+            <span id="timer-display">00:00</span>
+            <p id="motivation">Choose a duration and protect your attention.</p>
+          </div>
+        </div>
+
+        <div class="control-grid">
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>Focus Session</h2>
+              <span id="streak-pill">Streak: 0</span>
+            </div>
+            <div class="duration-options" role="group" aria-label="Focus duration">
+              <button class="duration-button" data-minutes="15">15 min</button>
+              <button class="duration-button selected" data-minutes="25">25 min</button>
+              <button class="duration-button" data-minutes="45">45 min</button>
+              <button class="duration-button" data-minutes="60">60 min</button>
+            </div>
+            <div class="session-stats">
+              <div>
+                <span>Attempts</span>
+                <strong id="attempt-count">0</strong>
+              </div>
+              <div>
+                <span>Current streak</span>
+                <strong id="current-streak">0</strong>
+              </div>
+              <div>
+                <span>Duration</span>
+                <strong id="duration-label">25m</strong>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-heading">
+              <h2>Distracting App Simulator</h2>
+              <span class="live-dot" id="focus-live-dot">Idle</span>
+            </div>
+            <div class="app-grid" id="app-grid">
+              <button class="app-button instagram" data-app="Instagram">Instagram</button>
+              <button class="app-button tiktok" data-app="TikTok">TikTok</button>
+              <button class="app-button youtube" data-app="YouTube Shorts">YouTube Shorts</button>
+              <button class="app-button snapchat" data-app="Snapchat">Snapchat</button>
+              <button class="app-button reddit" data-app="Reddit">Reddit</button>
+              <button class="app-button twitter" data-app="X / Twitter">X / Twitter</button>
+            </div>
+          </section>
+        </div>
+
+        <section class="privacy-note">
+          <h2>Safety and privacy</h2>
+          <p>
+            This prototype does not track real apps. It simulates app-opening behavior for
+            demonstration. A real Android version would require usage access or accessibility
+            permissions.
+          </p>
+        </section>
+
+        <section class="website-section">
+          <div class="section-heading">
+            <p class="eyebrow">How the website works</p>
+            <h2>Catch the impulse, make the choice, keep the focus.</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card">
+              <span class="feature-number">01</span>
+              <h3>Start a session</h3>
+              <p>Pick a study block and let the timer become the guardrail for your attention.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">02</span>
+              <h3>Trigger the simulator</h3>
+              <p>Tap a distracting app button to mimic the moment you would normally drift away.</p>
+            </article>
+            <article class="feature-card">
+              <span class="feature-number">03</span>
+              <h3>Pause before scrolling</h3>
+              <p>The warning, beep, countdown, and reflection box slow the habit loop down.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="website-section split-section">
+          <div>
+            <p class="eyebrow">Designed for students</p>
+            <h2>Bold enough to interrupt, calm enough to keep using.</h2>
+          </div>
+          <div class="benefit-list">
+            <span>Local-only stats</span>
+            <span>Adjustable intensity</span>
+            <span>Pastel, light, and dark themes</span>
+            <span>No real app tracking in this demo</span>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" id="stats-view">
+        <div class="screen-title">
+          <p class="eyebrow">Daily dashboard</p>
+          <h1>Stats</h1>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><span>Total opens today</span><strong id="stat-total">0</strong></article>
+          <article class="stat-card"><span>Most opened app</span><strong id="stat-most">None</strong></article>
+          <article class="stat-card"><span>Interventions</span><strong id="stat-interventions">0</strong></article>
+          <article class="stat-card"><span>Take me back wins</span><strong id="stat-backs">0</strong></article>
+          <article class="stat-card"><span>Estimated time saved</span><strong id="stat-saved">0 min</strong></article>
+          <article class="stat-card"><span>Longest focus streak</span><strong id="stat-longest">0</strong></article>
+          <article class="stat-card score-card"><span>Daily focus score</span><strong id="stat-score">100</strong><em>/100</em></article>
+        </div>
+        <button class="secondary-button" id="reset-stats-btn">Reset Today's Stats</button>
+      </section>
+
+      <section class="view" id="settings-view">
+        <div class="screen-title">
+          <p class="eyebrow">Make the interruption yours</p>
+          <h1>Settings</h1>
+        </div>
+        <div class="settings-list">
+          <label class="setting-card">
+            <span>Intervention intensity</span>
+            <select id="intensity-setting">
+              <option value="soft">Soft</option>
+              <option value="medium">Medium</option>
+              <option value="dramatic">Dramatic</option>
+            </select>
+          </label>
+          <label class="setting-card">
+            <span>Sound volume</span>
+            <input id="volume-setting" type="range" min="0" max="100" step="5">
+          </label>
+          <label class="setting-card">
+            <span>Countdown length</span>
+            <select id="countdown-setting">
+              <option value="5">5 seconds</option>
+              <option value="10">10 seconds</option>
+              <option value="15">15 seconds</option>
+              <option value="30">30 seconds</option>
+            </select>
+          </label>
+          <label class="setting-card">
+            <span>Theme</span>
+            <select id="theme-setting">
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+              <option value="pastel">Pastel</option>
+            </select>
+          </label>
+          <label class="setting-card toggle-card">
+            <span>Funny messages</span>
+            <input id="funny-setting" type="checkbox">
+          </label>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand">
+        <img src="logo.svg" alt="" width="34" height="34">
+        <strong>Doomscroller Stopper</strong>
+      </div>
+      <p>Static website prototype. No backend. No real app tracking. Your demo data stays in this browser.</p>
+    </footer>
+  </div>
+
+  <div class="intervention hidden" id="intervention" role="dialog" aria-modal="true" aria-labelledby="intervention-title">
+    <div class="intervention-box">
+      <p class="warning-kicker">Focus alarm</p>
+      <h1 id="intervention-title">WAIT.</h1>
+      <p class="opened-message" id="opened-message">You opened Instagram again.</p>
+      <p class="warning-message" id="warning-message">Do you actually want to scroll, or are you avoiding something?</p>
+      <div class="countdown-ring">
+        <span id="countdown-number">10</span>
+        <small>seconds</small>
+      </div>
+      <label class="reflection-label" for="reflection-input">Why are you opening this app?</label>
+      <textarea id="reflection-input" rows="3" minlength="10" placeholder="Type at least 10 characters..."></textarea>
+      <p class="reflection-hint" id="reflection-hint">Countdown and reflection required.</p>
+      <div class="intervention-actions">
+        <button class="primary-button" id="take-back-btn" disabled>Take me back</button>
+        <button class="danger-button" id="open-anyway-btn" disabled>Open anyway</button>
+        <button class="secondary-button" id="focus-25-btn">Start 25-minute focus timer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
