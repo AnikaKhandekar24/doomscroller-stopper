@@ -162,11 +162,6 @@ function formatTime(seconds) {
 }
 
 function handleAppOpen(appName) {
-  if (!session.active) {
-    els.motivation.textContent = `You opened ${appName}. Start a focus session to enable interventions.`;
-    return;
-  }
-
   session.attempts += 1;
   session.currentStreak = 0;
   stats.totalOpens += 1;
