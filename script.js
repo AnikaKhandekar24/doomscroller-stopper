@@ -40,6 +40,7 @@ let intervention = {
   timerId: null,
   countdownDone: false
 };
+let lastFocusEscapeAt = 0;
 
 const messages = {
   soft: [
@@ -162,6 +163,19 @@ function formatTime(seconds) {
 }
 
 function handleAppOpen(appName) {
+  triggerIntervention(appName);
+}
+
+function handleFocusEscape(reason) {
+  if (!session.active || !els.intervention.classList.contains("hidden")) return;
+
+  const now = Date.now();
+  if (now - lastFocusEscapeAt < 1500) return;
+  lastFocusEscapeAt = now;
+  triggerIntervention(reason);
+}
+
+function triggerIntervention(appName) {
   session.attempts += 1;
   session.currentStreak = 0;
   stats.totalOpens += 1;
@@ -312,6 +326,11 @@ els.durationButtons.forEach((button) => {
 
 els.appButtons.forEach((button) => {
   button.addEventListener("click", () => handleAppOpen(button.dataset.app));
+});
+
+window.addEventListener("blur", () => handleFocusEscape("another tab or app"));
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) handleFocusEscape("another tab or app");
 });
 
 els.reflectionInput.addEventListener("input", updateInterventionReadyState);

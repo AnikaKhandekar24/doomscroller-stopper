@@ -11,6 +11,7 @@ Doomscrolling often happens before a person makes a conscious decision. This pro
 - Home screen with app explanation and quick navigation
 - Focus session durations of 15, 25, 45, and 60 minutes
 - Distracting app simulator for Instagram, TikTok, YouTube Shorts, Snapchat, Reddit, and X / Twitter
+- Focus escape detector that warns when the user switches away from the page during a focus session
 - Full-screen intervention overlay with:
   - Big warning message
   - Web Audio API beep/glitch alarm
